@@ -74,4 +74,5 @@ class Game():
                 num_left += 1
         return num_left == 1 #if only one player has bills, game is over
 
-__init__()
+if __name__ == "__main__":
+    __init__()
