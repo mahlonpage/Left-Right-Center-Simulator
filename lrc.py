@@ -1,11 +1,10 @@
 import random
-import numpy as np
 
 NUM_OF_SIMS = 100000
 
 def __init__():
     num_players = repl() #get num players from user
-    wins = np.zeros(num_players, dtype=int) #an array to count number of wins by each player
+    wins = [0] * num_players #an array to count number of wins by each player
     time = 0 
     for _ in range(NUM_OF_SIMS): #run a game NUM_OF_SIMS times
         game = Game(num_players)
@@ -15,14 +14,14 @@ def __init__():
         if time % 10000 == 0:
             print(time)
     for i in range(len(wins)):
-        print("Player " + str(i + 1) + " wins: " + str(wins[i] / NUM_OF_SIMS)) #prints percent of time each player wins
+        print(f"Player {i + 1} wins: {wins[i] / NUM_OF_SIMS}") #prints percent of time each player wins
 
 
 def repl():
     done = False
     while done == False:
         num_players = int(input("How many players are there? (20 max) \n"))
-        if num_players > 1 and num_players <= 20: #make sure player num is between 1 and 20
+        if 1 < num_players <= 20: #make sure player num is between 1 and 20
             done = True
         else:
             print("invalid input, please enter a number between 1 and 20!")
@@ -31,8 +30,7 @@ def repl():
 class Game():
     def __init__(self, num_players):
         self.num_players = num_players
-        self.players = np.zeros(num_players, dtype=int) #an array to represent each player as an int of their number of bills
-        self.players += 3 #start each player with 3 bills
+        self.players = [3] * num_players #start each player with 3 bills
 
     def run(self):
         turn = 0 #counter to track position in array of whose turn it is
